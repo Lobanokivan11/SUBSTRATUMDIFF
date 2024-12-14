@@ -1,0 +1,544 @@
+diff -Naur BASEORIG/core/java/com/android/internal/util/UserIcons.java BASEOMS/core/java/com/android/internal/util/UserIcons.java
+--- BASEORIG/core/java/com/android/internal/util/UserIcons.java	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/java/com/android/internal/util/UserIcons.java	1900-01-00 00:00:00 +0000
+@@ -94,7 +94,7 @@
+      */
+     public static Drawable getDefaultUserIconInColor(Resources resources, @ColorInt int color) {
+         Drawable icon = resources.getDrawable(R.drawable.ic_account_circle, null).mutate();
+-        icon.setColorFilter(color, Mode.SRC_IN);
++        icon.setColorFilter(color, Mode.SRC_ATOP);
+         icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+         return icon;
+     }
+diff -Naur BASEORIG/core/res/res/drawable/toast_frame.xml BASEOMS/core/res/res/drawable/toast_frame.xml
+--- BASEORIG/core/res/res/drawable/toast_frame.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/drawable/toast_frame.xml	1900-01-00 00:00:00 +0000
+@@ -17,7 +17,6 @@
+ -->
+ <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+-    <solid android:color="?android:attr/colorSurface" />
++    <solid android:color="@color/toast_bg_color" />
+     <corners android:radius="28dp" />
+ </shape>
+-
+diff -Naur BASEORIG/core/res/res/layout/app_permission_item.xml BASEOMS/core/res/res/layout/app_permission_item.xml
+--- BASEORIG/core/res/res/layout/app_permission_item.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/layout/app_permission_item.xml	1900-01-00 00:00:00 +0000
+@@ -4,9 +4,9 @@
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at
+-  
++
+           http://www.apache.org/licenses/LICENSE-2.0
+-  
++
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@@ -32,7 +32,7 @@
+         android:layout_marginStart="16dp"
+         android:layout_marginEnd="8dp"
+         android:scaleType="fitCenter"
+-        android:tint="@android:color/black"/>
++        android:tint="@color/app_permission_icon_tint"/>
+ 
+     <ImageView
+         android:layout_width="wrap_content"
+diff -Naur BASEORIG/core/res/res/layout/immersive_mode_cling.xml BASEOMS/core/res/res/layout/immersive_mode_cling.xml
+--- BASEORIG/core/res/res/layout/immersive_mode_cling.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/layout/immersive_mode_cling.xml	1900-01-00 00:00:00 +0000
+@@ -16,7 +16,7 @@
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:background="?android:attr/colorAccent"
++        android:background="@color/immersive_cling_bg_color"
+         android:gravity="center_vertical"
+         android:paddingBottom="24dp">
+ 
+@@ -47,7 +47,7 @@
+                 android:paddingTop="8dp"
+                 android:scaleType="center"
+                 android:src="@drawable/ic_expand_more_48dp"
+-                android:tint="?android:attr/colorAccent"/>
++                android:background="@color/immersive_cling_bg_color"/>
+     </FrameLayout>
+ 
+     <TextView
+@@ -59,7 +59,7 @@
+             android:paddingStart="48dp"
+             android:paddingTop="40dp"
+             android:text="@string/immersive_cling_title"
+-            android:textColor="@android:color/white"
++            android:textColor="@color/immersive_cling_text_color"
+             android:textSize="24sp" />
+ 
+     <TextView
+@@ -71,7 +71,7 @@
+             android:paddingStart="48dp"
+             android:paddingTop="12.6dp"
+             android:text="@string/immersive_cling_description"
+-            android:textColor="@android:color/white"
++            android:textColor="@color/immersive_cling_text_color"
+             android:textSize="16sp" />
+ 
+     <Button
+@@ -86,7 +86,7 @@
+             android:paddingEnd="8dp"
+             android:paddingStart="8dp"
+             android:text="@string/immersive_cling_positive"
+-            android:textColor="@android:color/white"
++            android:textColor="@color/immersive_cling_button_text_color"
+             android:textSize="14sp" />
+ 
+ </RelativeLayout>
+diff -Naur BASEORIG/core/res/res/values/projekt_colors.xml BASEOMS/core/res/res/values/projekt_colors.xml
+--- BASEORIG/core/res/res/values/projekt_colors.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/values/projekt_colors.xml	1900-01-00 00:00:00 +0000
+@@ -0,0 +1,36 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++    Copyright (c) 2016-2019 Projekt Substratum
++
++    Licensed under the Apache License, Version 2.0 (the "License");
++    you may not use this file except in compliance with the License.
++    You may obtain a copy of the License at
++
++        http://www.apache.org/licenses/LICENSE-2.0
++
++    Unless required by applicable law or agreed to in writing, software
++    distributed under the License is distributed on an "AS IS" BASIS,
++    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++    See the License for the specific language governing permissions and
++    limitations under the License.
++-->
++<resources>
++
++    <!-- tooltip light text color -->
++    <color name="tooltip_text_light">@color/foreground_material_light</color>
++    <!-- tooltip dark text color -->
++    <color name="tooltip_text_dark">@color/foreground_material_dark</color>
++
++    <!-- Immersive cling -->
++    <color name="immersive_cling_bg_color">@color/accent_device_default_light</color>
++    <color name="immersive_cling_text_color">@color/primary_text_default_material_light</color>
++    <color name="immersive_cling_button_text_color">@android:color/white</color>
++
++    <!-- App permission tint -->
++    <color name="app_permission_icon_tint">@android:color/black</color>
++
++    <!-- Toast text and bg colors -->
++    <color name="toast_bg_color">@color/background_device_default_light</color>
++    <color name="toast_text_color">@color/text_color_primary_device_default_light</color>
++
++</resources>
+diff -Naur BASEORIG/core/res/res/values/projekt_config.xml BASEOMS/core/res/res/values/projekt_config.xml
+--- BASEORIG/core/res/res/values/projekt_config.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/values/projekt_config.xml	1900-01-00 00:00:00 +0000
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++    Copyright (c) 2016-2019 Projekt Substratum
++
++    Licensed under the Apache License, Version 2.0 (the "License");
++    you may not use this file except in compliance with the License.
++    You may obtain a copy of the License at
++
++        http://www.apache.org/licenses/LICENSE-2.0
++
++    Unless required by applicable law or agreed to in writing, software
++    distributed under the License is distributed on an "AS IS" BASIS,
++    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++    See the License for the specific language governing permissions and
++    limitations under the License.
++-->
++<resources>
++
++</resources>
+diff -Naur BASEORIG/core/res/res/values/projekt_symbols.xml BASEOMS/core/res/res/values/projekt_symbols.xml
+--- BASEORIG/core/res/res/values/projekt_symbols.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/values/projekt_symbols.xml	1900-01-00 00:00:00 +0000
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++    Copyright (c) 2016-2019 Projekt Substratum
++
++    Licensed under the Apache License, Version 2.0 (the "License");
++    you may not use this file except in compliance with the License.
++    You may obtain a copy of the License at
++
++        http://www.apache.org/licenses/LICENSE-2.0
++
++    Unless required by applicable law or agreed to in writing, software
++    distributed under the License is distributed on an "AS IS" BASIS,
++    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++    See the License for the specific language governing permissions and
++    limitations under the License.
++-->
++<resources>
++
++</resources>
+diff -Naur BASEORIG/core/res/res/values/styles.xml BASEOMS/core/res/res/values/styles.xml
+--- BASEORIG/core/res/res/values/styles.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/values/styles.xml	1900-01-00 00:00:00 +0000
+@@ -967,7 +967,7 @@
+         <item name="fontFamily">@*android:string/config_bodyFontFamily</item>
+         <item name="textSize">14sp</item>
+         <item name="lineHeight">20sp</item>
+-        <item name="textColor">?android:attr/textColorPrimary</item>
++        <item name="textColor">@color/toast_text_color</item>
+     </style>
+ 
+     <style name="TextAppearance.Tooltip">
+diff -Naur BASEORIG/core/res/res/values/themes_material.xml BASEOMS/core/res/res/values/themes_material.xml
+--- BASEORIG/core/res/res/values/themes_material.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/values/themes_material.xml	1900-01-00 00:00:00 +0000
+@@ -407,7 +407,7 @@
+         <item name="colorProgressBackgroundNormal">?attr/colorControlNormal</item>
+ 
+         <!-- Tooltip popup properties -->
+-        <item name="tooltipForegroundColor">@color/foreground_material_light</item>
++        <item name="tooltipForegroundColor">@color/tooltip_text_light</item>
+         <item name="tooltipBackgroundColor">@color/tooltip_background_light</item>
+     </style>
+ 
+@@ -783,7 +783,7 @@
+         <item name="colorProgressBackgroundNormal">?attr/colorControlNormal</item>
+ 
+         <!-- Tooltip popup properties -->
+-        <item name="tooltipForegroundColor">@color/foreground_material_dark</item>
++        <item name="tooltipForegroundColor">@color/tooltip_text_dark</item>
+         <item name="tooltipBackgroundColor">@color/tooltip_background_dark</item>
+     </style>
+ 
+diff -Naur BASEORIG/core/res/res/values-night/projekt_colors.xml BASEOMS/core/res/res/values-night/projekt_colors.xml
+--- BASEORIG/core/res/res/values-night/projekt_colors.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/core/res/res/values-night/projekt_colors.xml	1900-01-00 00:00:00 +0000
+@@ -0,0 +1,30 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++    Copyright (c) 2016-2019 Projekt Substratum
++
++    Licensed under the Apache License, Version 2.0 (the "License");
++    you may not use this file except in compliance with the License.
++    You may obtain a copy of the License at
++
++        http://www.apache.org/licenses/LICENSE-2.0
++
++    Unless required by applicable law or agreed to in writing, software
++    distributed under the License is distributed on an "AS IS" BASIS,
++    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++    See the License for the specific language governing permissions and
++    limitations under the License.
++-->
++<resources>
++
++    <!-- Immersive cling -->
++    <color name="immersive_cling_bg_color">@color/accent_device_default_dark</color>
++    <color name="immersive_cling_text_color">@color/primary_text_default_material_dark</color>
++
++    <!-- App permission tint -->
++    <color name="app_permission_icon_tint">@android:color/white</color>
++
++    <!-- Toast text and bg colors -->
++    <color name="toast_bg_color">@color/background_device_default_dark</color>
++    <color name="toast_text_color">@color/text_color_primary_device_default_dark</color>
++
++</resources>
+diff -Naur BASEORIG/graphics/java/android/graphics/drawable/Icon.java BASEOMS/graphics/java/android/graphics/drawable/Icon.java
+--- BASEORIG/graphics/java/android/graphics/drawable/Icon.java	1900-01-00 00:00:00 +0000
++++ BASEOMS/graphics/java/android/graphics/drawable/Icon.java	1900-01-00 00:00:00 +0000
+@@ -379,7 +379,7 @@
+                         resPackage = context.getPackageName();
+                     }
+                     if ("android".equals(resPackage)) {
+-                        mObj1 = Resources.getSystem();
++                        mObj1 = context.getResources();
+                     } else {
+                         final PackageManager pm = context.getPackageManager();
+                         try {
+diff -Naur BASEORIG/packages/SystemUI/res/layout/global_actions_grid_item_lite.xml BASEOMS/packages/SystemUI/res/layout/global_actions_grid_item_lite.xml
+--- BASEORIG/packages/SystemUI/res/layout/global_actions_grid_item_lite.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/layout/global_actions_grid_item_lite.xml	1900-01-00 00:00:00 +0000
+@@ -29,7 +29,7 @@
+             android:layout_marginBottom="@dimen/global_actions_grid_container_bottom_margin"
+             android:padding="@dimen/global_actions_button_padding"
+             android:scaleType="centerInside"
+-            android:tint="@color/global_actions_lite_text"
++            android:tint="@color/global_actions_lite_icon"
+             android:background="@drawable/global_actions_lite_button"/>
+         <TextView
+             android:id="@*android:id/message"
+diff -Naur BASEORIG/packages/SystemUI/res/layout/global_actions_grid_item_v2.xml BASEOMS/packages/SystemUI/res/layout/global_actions_grid_item_v2.xml
+--- BASEORIG/packages/SystemUI/res/layout/global_actions_grid_item_v2.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/layout/global_actions_grid_item_v2.xml	1900-01-00 00:00:00 +0000
+@@ -35,7 +35,7 @@
+             android:layout_height="20dp"
+             android:layout_marginBottom="14dp"
+             android:scaleType="centerInside"
+-            android:tint="@color/control_primary_text" />
++            android:tint="@color/global_actions_lite_icon" />
+         <TextView
+             android:id="@*android:id/message"
+             android:layout_width="match_parent"
+diff -Naur BASEORIG/packages/SystemUI/res/layout/global_actions_power_item.xml BASEOMS/packages/SystemUI/res/layout/global_actions_power_item.xml
+--- BASEORIG/packages/SystemUI/res/layout/global_actions_power_item.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/layout/global_actions_power_item.xml	1900-01-00 00:00:00 +0000
+@@ -28,7 +28,7 @@
+         android:layout_height="24dp"
+         android:layout_marginBottom="@dimen/global_actions_power_dialog_item_bottom_margin"
+         android:scaleType="centerInside"
+-        android:tint="@color/control_primary_text" />
++        android:tint="@color/global_actions_lite_icon" />
+     <TextView
+         android:id="@*android:id/message"
+         android:layout_width="match_parent"
+@@ -42,4 +42,3 @@
+         android:textColor="@color/control_primary_text"
+         android:textAppearance="?android:attr/textAppearanceSmall" />
+ </com.android.systemui.globalactions.GlobalActionsItem>
+-
+diff -Naur BASEORIG/packages/SystemUI/res/layout/screen_pinning_request_buttons.xml BASEOMS/packages/SystemUI/res/layout/screen_pinning_request_buttons.xml
+--- BASEORIG/packages/SystemUI/res/layout/screen_pinning_request_buttons.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/layout/screen_pinning_request_buttons.xml	1900-01-00 00:00:00 +0000
+@@ -28,7 +28,7 @@
+     android:id="@+id/screen_pinning_buttons"
+     android:layout_width="match_parent"
+     android:layout_height="@dimen/screen_pinning_request_button_height"
+-    android:background="?android:attr/colorAccent">
++    android:background="@color/screen_pinning_background_color">
+ 
+     <View
+         android:layout_width="@dimen/screen_pinning_request_side_width"
+diff -Naur BASEORIG/packages/SystemUI/res/layout/screen_pinning_request_buttons_land.xml BASEOMS/packages/SystemUI/res/layout/screen_pinning_request_buttons_land.xml
+--- BASEORIG/packages/SystemUI/res/layout/screen_pinning_request_buttons_land.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/layout/screen_pinning_request_buttons_land.xml	1900-01-00 00:00:00 +0000
+@@ -25,7 +25,7 @@
+     android:id="@+id/screen_pinning_buttons"
+     android:layout_height="match_parent"
+     android:layout_width="@dimen/screen_pinning_request_button_height"
+-    android:background="?android:attr/colorAccent"
++    android:background="@color/screen_pinning_background_color"
+     android:orientation="vertical">
+ 
+     <View
+diff -Naur BASEORIG/packages/SystemUI/res/layout/screen_pinning_request_buttons_sea.xml BASEOMS/packages/SystemUI/res/layout/screen_pinning_request_buttons_sea.xml
+--- BASEORIG/packages/SystemUI/res/layout/screen_pinning_request_buttons_sea.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/layout/screen_pinning_request_buttons_sea.xml	1900-01-00 00:00:00 +0000
+@@ -25,7 +25,7 @@
+     android:id="@+id/screen_pinning_buttons"
+     android:layout_height="match_parent"
+     android:layout_width="@dimen/screen_pinning_request_button_height"
+-    android:background="?android:attr/colorAccent"
++    android:background="@color/screen_pinning_background_color"
+     android:orientation="vertical">
+ 
+     <View
+diff -Naur BASEORIG/packages/SystemUI/res/layout/screen_pinning_request_text_area.xml BASEOMS/packages/SystemUI/res/layout/screen_pinning_request_text_area.xml
+--- BASEORIG/packages/SystemUI/res/layout/screen_pinning_request_text_area.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/layout/screen_pinning_request_text_area.xml	1900-01-00 00:00:00 +0000
+@@ -25,7 +25,7 @@
+         android:id="@+id/screen_pinning_text_area"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:background="?android:attr/colorAccent"
++        android:background="@color/screen_pinning_background_color"
+         android:gravity="center_vertical">
+ 
+         <TextView
+@@ -64,7 +64,7 @@
+             android:paddingEnd="8dp"
+             android:paddingStart="8dp"
+             android:text="@string/screen_pinning_positive"
+-            android:textColor="@android:color/white"
++            android:textColor="@color/screen_pinning_positive_text_color"
+             android:textSize="14sp" />
+ 
+         <Button
+@@ -79,7 +79,7 @@
+             android:paddingEnd="8dp"
+             android:paddingStart="8dp"
+             android:text="@string/screen_pinning_negative"
+-            android:textColor="@android:color/white"
++            android:textColor="@color/screen_pinning_negative_text_color"
+             android:textSize="14sp" />
+ 
+     </RelativeLayout>
+diff -Naur BASEORIG/packages/SystemUI/res/layout/switch_bar.xml BASEOMS/packages/SystemUI/res/layout/switch_bar.xml
+--- BASEORIG/packages/SystemUI/res/layout/switch_bar.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/layout/switch_bar.xml	1900-01-00 00:00:00 +0000
+@@ -33,8 +33,7 @@
+         android:paddingStart="48dp"
+         android:maxLines="2"
+         android:ellipsize="end"
+-        android:textAppearance="@android:style/TextAppearance.Material.Title"
+-        android:textColor="?android:attr/textColorPrimaryInverse"
++        android:textAppearance="@style/TextAppearance.SwitchBar"
+         android:textAlignment="viewStart"
+         android:text="@string/switch_bar_on" />
+ 
+diff -Naur BASEORIG/packages/SystemUI/res/values/projekt_colors.xml BASEOMS/packages/SystemUI/res/values/projekt_colors.xml
+--- BASEORIG/packages/SystemUI/res/values/projekt_colors.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/values/projekt_colors.xml	1900-01-00 00:00:00 +0000
+@@ -0,0 +1,30 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++    Copyright (c) 2016-2019 Projekt Substratum
++
++    Licensed under the Apache License, Version 2.0 (the "License");
++    you may not use this file except in compliance with the License.
++    You may obtain a copy of the License at
++
++        http://www.apache.org/licenses/LICENSE-2.0
++
++    Unless required by applicable law or agreed to in writing, software
++    distributed under the License is distributed on an "AS IS" BASIS,
++    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++    See the License for the specific language governing permissions and
++    limitations under the License.
++-->
++<resources>
++
++    <!-- Keyguard affordance circle background -->
++    <color name="keyguard_affordance_circle_background">@android:color/white</color>
++
++    <!-- Screen pinning colors -->
++    <color name="screen_pinning_background_color">@*android:color/accent_device_default_light</color>
++    <color name="screen_pinning_positive_text_color">@android:color/white</color>
++    <color name="screen_pinning_negative_text_color">@android:color/white</color>
++
++    <!-- Power Menu Lite icon tint color -->
++    <color name="global_actions_lite_icon">@*android:color/foreground_device_default_light</color>
++
++</resources>
+diff -Naur BASEORIG/packages/SystemUI/res/values/projekt_config.xml BASEOMS/packages/SystemUI/res/values/projekt_config.xml
+--- BASEORIG/packages/SystemUI/res/values/projekt_config.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/values/projekt_config.xml	1900-01-00 00:00:00 +0000
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++    Copyright (c) 2016-2019 Projekt Substratum
++
++    Licensed under the Apache License, Version 2.0 (the "License");
++    you may not use this file except in compliance with the License.
++    You may obtain a copy of the License at
++
++        http://www.apache.org/licenses/LICENSE-2.0
++
++    Unless required by applicable law or agreed to in writing, software
++    distributed under the License is distributed on an "AS IS" BASIS,
++    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++    See the License for the specific language governing permissions and
++    limitations under the License.
++-->
++<resources>
++
++</resources>
+diff -Naur BASEORIG/packages/SystemUI/res/values/projekt_styles.xml BASEOMS/packages/SystemUI/res/values/projekt_styles.xml
+--- BASEORIG/packages/SystemUI/res/values/projekt_styles.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/values/projekt_styles.xml	1900-01-00 00:00:00 +0000
+@@ -0,0 +1,27 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++    Copyright (c) 2016-2019 Projekt Substratum
++
++    Licensed under the Apache License, Version 2.0 (the "License");
++    you may not use this file except in compliance with the License.
++    You may obtain a copy of the License at
++
++        http://www.apache.org/licenses/LICENSE-2.0
++
++    Unless required by applicable law or agreed to in writing, software
++    distributed under the License is distributed on an "AS IS" BASIS,
++    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++    See the License for the specific language governing permissions and
++    limitations under the License.
++-->
++<resources>
++
++    <!-- Switch bar text appearance -->
++    <style name="TextAppearance.SwitchBar" parent="@android:style/TextAppearance.Material.Title">
++        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
++    </style>
++
++    <!-- Phyisical Keyboard Dialog style -->
++    <style name="KeyboardShortcutsDialog" parent="@*android:style/Theme.DeviceDefault.Settings" />
++
++</resources>
+diff -Naur BASEORIG/packages/SystemUI/res/values-night/projekt_colors.xml BASEOMS/packages/SystemUI/res/values-night/projekt_colors.xml
+--- BASEORIG/packages/SystemUI/res/values-night/projekt_colors.xml	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/res/values-night/projekt_colors.xml	1900-01-00 00:00:00 +0000
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++    Copyright (c) 2016-2019 Projekt Substratum
++
++    Licensed under the Apache License, Version 2.0 (the "License");
++    you may not use this file except in compliance with the License.
++    You may obtain a copy of the License at
++
++        http://www.apache.org/licenses/LICENSE-2.0
++
++    Unless required by applicable law or agreed to in writing, software
++    distributed under the License is distributed on an "AS IS" BASIS,
++    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++    See the License for the specific language governing permissions and
++    limitations under the License.
++-->
++<resources>
++
++    <!-- Screen pinning colors -->
++    <color name="screen_pinning_background_color">@*android:color/accent_device_default_dark</color>
++
++    <!-- Power Menu Lite icon tint color -->
++    <color name="global_actions_lite_icon">@*android:color/foreground_device_default_dark</color>
++
++</resources>
+diff -Naur BASEORIG/packages/SystemUI/src/com/android/systemui/statusbar/KeyboardShortcuts.java BASEOMS/packages/SystemUI/src/com/android/systemui/statusbar/KeyboardShortcuts.java
+--- BASEORIG/packages/SystemUI/src/com/android/systemui/statusbar/KeyboardShortcuts.java	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/src/com/android/systemui/statusbar/KeyboardShortcuts.java	1900-01-00 00:00:00 +0000
+@@ -128,8 +128,7 @@
+     private KeyCharacterMap mBackupKeyCharacterMap;
+ 
+     private KeyboardShortcuts(Context context) {
+-        this.mContext = new ContextThemeWrapper(
+-                context, android.R.style.Theme_DeviceDefault_Settings);
++        this.mContext = new ContextThemeWrapper(context, R.style.KeyboardShortcutsDialog);
+         this.mPackageManager = AppGlobals.getPackageManager();
+         loadResources(context);
+     }
+diff -Naur BASEORIG/packages/SystemUI/src/com/android/systemui/statusbar/KeyguardAffordanceView.java BASEOMS/packages/SystemUI/src/com/android/systemui/statusbar/KeyguardAffordanceView.java
+--- BASEORIG/packages/SystemUI/src/com/android/systemui/statusbar/KeyguardAffordanceView.java	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/src/com/android/systemui/statusbar/KeyguardAffordanceView.java	1900-01-00 00:00:00 +0000
+@@ -131,7 +131,8 @@
+ 
+         mCirclePaint = new Paint();
+         mCirclePaint.setAntiAlias(true);
+-        mCircleColor = 0xffffffff;
++        mCircleColor = mContext.getResources().getColor(
++                R.color.keyguard_affordance_circle_background);
+         mCirclePaint.setColor(mCircleColor);
+ 
+         mNormalColor = a.getColor(android.R.styleable.ImageView_tint, 0xffffffff);
+diff -Naur BASEORIG/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java BASEOMS/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
+--- BASEORIG/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java	1900-01-00 00:00:00 +0000
++++ BASEOMS/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java	1900-01-00 00:00:00 +0000
+@@ -61,6 +61,7 @@
+ import android.graphics.Color;
+ import android.graphics.Outline;
+ import android.graphics.PixelFormat;
++import android.graphics.PorterDuff;
+ import android.graphics.Rect;
+ import android.graphics.Region;
+ import android.graphics.drawable.ColorDrawable;
+@@ -879,6 +880,8 @@
+         }
+         row.dndIcon = row.view.findViewById(R.id.dnd_icon);
+         row.slider = row.view.findViewById(R.id.volume_row_slider);
++        row.slider.setProgressTintMode(PorterDuff.Mode.SRC_ATOP);
++        row.slider.setThumbTintMode(PorterDuff.Mode.SRC_ATOP);
+         row.slider.setOnSeekBarChangeListener(new VolumeSeekBarChangeListener(row));
+         row.number = row.view.findViewById(R.id.volume_number);
+ 
