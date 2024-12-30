@@ -1,6 +1,6 @@
-diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_colors.xml android_packages_apps_Settings-lineage-22.0/res/values/projekt_colors.xml
---- android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_colors.xml	1970-01-01 03:00:00.000000000 +0300
-+++ android_packages_apps_Settings-lineage-22.0/res/values/projekt_colors.xml	2024-12-30 12:25:20.682824761 +0300
+diff -Naur OPTIONSORIG/res/values/projekt_colors.xml OPTIONSOMS/res/values/projekt_colors.xml
+--- OPTIONSORIG/res/values/projekt_colors.xml	1900-01-00 00:00:00 +0000
++++ OPTIONSOMS/res/values/projekt_colors.xml	1900-01-00 00:00:00 +0000
 @@ -0,0 +1,21 @@
 +<?xml version="1.0" encoding="utf-8"?>
 +<!--
@@ -23,9 +23,9 @@ diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_c
 +    <color name="color_control_normal">@*android:color/text_color_secondary_device_default_light</color>
 +
 +</resources>
-diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_config.xml android_packages_apps_Settings-lineage-22.0/res/values/projekt_config.xml
---- android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_config.xml	1970-01-01 03:00:00.000000000 +0300
-+++ android_packages_apps_Settings-lineage-22.0/res/values/projekt_config.xml	2024-12-30 12:25:20.689491428 +0300
+diff -Naur OPTIONSORIG/res/values/projekt_config.xml OPTIONSOMS/res/values/projekt_config.xml
+--- OPTIONSORIG/res/values/projekt_config.xml	1900-01-00 00:00:00 +0000
++++ OPTIONSOMS/res/values/projekt_config.xml	1900-01-00 00:00:00 +0000
 @@ -0,0 +1,19 @@
 +<?xml version="1.0" encoding="utf-8"?>
 +<!--
@@ -46,9 +46,9 @@ diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_c
 +<resources>
 +
 +</resources>
-diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_symbols.xml android_packages_apps_Settings-lineage-22.0/res/values/projekt_symbols.xml
---- android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_symbols.xml	1970-01-01 03:00:00.000000000 +0300
-+++ android_packages_apps_Settings-lineage-22.0/res/values/projekt_symbols.xml	2024-12-30 12:25:20.692824762 +0300
+diff -Naur OPTIONSORIG/res/values/projekt_symbols.xml OPTIONSOMS/res/values/projekt_symbols.xml
+--- OPTIONSORIG/res/values/projekt_symbols.xml	1900-01-00 00:00:00 +0000
++++ OPTIONSOMS/res/values/projekt_symbols.xml	1900-01-00 00:00:00 +0000
 @@ -0,0 +1,19 @@
 +<?xml version="1.0" encoding="utf-8"?>
 +<!--
@@ -69,21 +69,21 @@ diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values/projekt_s
 +<resources>
 +
 +</resources>
-diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values/themes.xml android_packages_apps_Settings-lineage-22.0/res/values/themes.xml
---- android_packages_apps_Settings-lineage-22.0-orig/res/values/themes.xml	2024-12-16 09:30:08.000000000 +0300
-+++ android_packages_apps_Settings-lineage-22.0/res/values/themes.xml	2024-12-30 12:26:47.576166751 +0300
+diff -Naur OPTIONSORIG/res/values/themes.xml OPTIONSOMS/res/values/themes.xml
+--- OPTIONSORIG/res/values/themes.xml	1900-01-00 00:00:00 +0000
++++ OPTIONSOMS/res/values/themes.xml	1900-01-00 00:00:00 +0000
 @@ -66,6 +66,8 @@
+ 
          <!-- For slice view in settings -->
          <item name="sliceViewStyle">@style/Widget.SliceView.Settings</item>
- 
-+        <item name="android:colorControlNormal">@color/color_control_normal</item>
 +
-         <item name="notification_importance_button_background_color_unselected">@android:color/transparent</item>
-         <item name="notification_importance_button_border_color_unselected">?androidprv:attr/materialColorOutlineVariant</item>
-         <item name="notification_importance_button_foreground_color_unselected">?androidprv:attr/materialColorOnSurfaceVariant</item>
-diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values-night/projekt_colors.xml android_packages_apps_Settings-lineage-22.0/res/values-night/projekt_colors.xml
---- android_packages_apps_Settings-lineage-22.0-orig/res/values-night/projekt_colors.xml	1970-01-01 03:00:00.000000000 +0300
-+++ android_packages_apps_Settings-lineage-22.0/res/values-night/projekt_colors.xml	2024-12-30 12:25:20.736158100 +0300
++        <item name="android:colorControlNormal">@color/color_control_normal</item>
+     </style>
+ 
+     <!-- Variant of the settings theme with no action bar. -->
+diff -Naur OPTIONSORIG/res/values-night/projekt_colors.xml OPTIONSOMS/res/values-night/projekt_colors.xml
+--- OPTIONSORIG/res/values-night/projekt_colors.xml	1900-01-00 00:00:00 +0000
++++ OPTIONSOMS/res/values-night/projekt_colors.xml	1900-01-00 00:00:00 +0000
 @@ -0,0 +1,21 @@
 +<?xml version="1.0" encoding="utf-8"?>
 +<!--
@@ -106,9 +106,9 @@ diff -Naur android_packages_apps_Settings-lineage-22.0-orig/res/values-night/pro
 +    <color name="color_control_normal">@*android:color/text_color_secondary_device_default_dark</color>
 +
 +</resources>
-diff -Naur android_packages_apps_Settings-lineage-22.0-orig/src/com/android/settings/display/ConversationMessageView.java android_packages_apps_Settings-lineage-22.0/src/com/android/settings/display/ConversationMessageView.java
---- android_packages_apps_Settings-lineage-22.0-orig/src/com/android/settings/display/ConversationMessageView.java	2024-12-16 09:30:08.000000000 +0300
-+++ android_packages_apps_Settings-lineage-22.0/src/com/android/settings/display/ConversationMessageView.java	2024-12-30 12:25:20.776158104 +0300
+diff -Naur OPTIONSORIG/src/com/android/settings/display/ConversationMessageView.java OPTIONSOMS/src/com/android/settings/display/ConversationMessageView.java
+--- OPTIONSORIG/src/com/android/settings/display/ConversationMessageView.java	1900-01-00 00:00:00 +0000
++++ OPTIONSOMS/src/com/android/settings/display/ConversationMessageView.java	1900-01-00 00:00:00 +0000
 @@ -254,10 +254,11 @@
          final int timestampColorResId = mIncoming ? R.color.timestamp_text_incoming
                  : R.color.timestamp_text_outgoing;
